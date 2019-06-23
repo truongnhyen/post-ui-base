@@ -79,29 +79,21 @@ const updatePost = async (post) => {
   }
 };
 
-// getPostListAsync().then(data => console.log)
 
 // -----------------------
 // MAIN LOGIC
 // -----------------------
 const init = async () => {
-  // Write your logic here ....
-  // const data = await getPostListAsync();
-  // console.log(data);
+  try {
+    const postList = await postApi.getAll();
+    console.log(postList);
+  } catch (error) {
+    console.log(error);
+  }
 
-  // const post = await getPostDetail('1356b24a-8b63-41dc-9bbe-1bfd5f4a219a');
-  // console.log(post);
-
-  // post.author = 'Po Nguyen';
-  // const updatedPost = await updatePost(post);
-  // console.log('Updated post: ', updatedPost);
-
-
-  const postList = await postApi.getAll();
-  console.log(postList);
-
-  const post = await postApi.getDetail('1356b24a-8b63-41dc-9bbe-1bfd5f4a219a');
-  console.log(post);
+  postApi.getAll()
+    .then(postList => console.log(postList))
+    .catch(error => console.log('Failed to fetch post list: ', error));
 };
 
 init();
