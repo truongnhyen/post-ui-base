@@ -3,24 +3,10 @@ import utils from './utils.js';
 
 const renderPost = (post) => {
   // Set banner image
-  utils.setBackgroundImageByElementId('postHeroImage', post.imageUrl);
-
   // Set title
-  // const title = document.querySelector('#postDetailTitle');
-  // if (title) {
-  //   title.innerText = post.title;
-  // }
-  utils.setTextByElementId('postDetailTitle', post.title);
-
   // Set author
-  utils.setTextByElementId('postDetailAuthor', post.author);
-
   // Set date time
-  const dateString = ` - ${utils.formatDate(post.updatedAt)}`;
-  utils.setTextByElementId('postDetailTimeSpan', dateString);
-
   // Set description
-  utils.setTextByElementId('postDetailDescription', post.description);
 };
 
 const renderEditLink = (post) => {

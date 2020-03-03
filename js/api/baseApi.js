@@ -11,23 +11,23 @@ export default class BaseApi {
     return fetchClient.get(url);
   }
 
-  getDetail(postId) {
-    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${postId}`;
+  getDetail(id) {
+    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${id}`;
     return fetchClient.get(url);
   }
 
-  add(post) {
+  add(payload) {
     const url = `${AppConstants.API_URL}/${this.getResourceName()}`;
-    return fetchClient.post(url, post);
+    return fetchClient.post(url, payload);
   }
 
-  update(post) {
-    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${post.id}`;
-    return fetchClient.patch(url, post);
+  update(payload) {
+    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${payload.id}`;
+    return fetchClient.patch(url, payload);
   }
 
-  remove(postId) {
-    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${postId}`;
+  remove(id) {
+    const url = `${AppConstants.API_URL}/${this.getResourceName()}/${id}`;
     return fetchClient.delete(url);
   }
 }
