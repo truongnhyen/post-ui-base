@@ -2,11 +2,15 @@ import postApi from './api/postApi.js';
 import utils from './utils.js';
 
 const renderPost = (post) => {
-  // Set banner image
-  // Set title
-  // Set author
-  // Set date time
-  // Set description
+  console.log('Post: ', post);
+
+  utils.setBackgroundImageByElementId('postHeroImage', post.imageUrl);
+  utils.setTextByElementId('postDetailTitle', post.title);
+  utils.setTextByElementId('postDetailAuthor', post.author);
+  utils.setTextByElementId('postDetailDescription', post.description);
+
+  const dateString = utils.formatDate(post.createdAt);
+  utils.setTextByElementId('postDetailTimeSpan', dateString);
 };
 
 const renderEditLink = (post) => {
@@ -27,15 +31,9 @@ const init = async () => {
     const postId = params.get('postId');
     if (!postId) return;
 
-    // Fetch post detail by id
     const post = await postApi.getDetail(postId);
-
-    // render post
     renderPost(post);
-
-    // update edit link
     renderEditLink(post);
-
   } catch (error) {
     console.log(error);
   }

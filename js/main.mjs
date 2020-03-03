@@ -94,6 +94,14 @@ const init = async () => {
   postApi.getAll()
     .then(postList => console.log(postList))
     .catch(error => console.log('Failed to fetch post list: ', error));
+
+
+  try {
+    const post = await postApi.getDetail('1356b24a-8b63-41dc-9bbe-1bfd5f4a219a');
+    console.log('Post: ', post);
+  } catch (error) {
+    console.log('Failed to fetch post: ', error);
+  }
 };
 
 init();
