@@ -12,6 +12,3 @@ const AppConstants = {
   API_URL: 'https://js-post-api.herokuapp.com/api',
 };
 export default AppConstants;
-
-AppConstants.API_URL
-Math.PI
