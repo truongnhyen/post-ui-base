@@ -39,6 +39,7 @@ URL: https://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1
 - [Bootstrap Carousel](https://getbootstrap.com/docs/4.0/components/carousel/): Used for slide show on Home page.
 - [Lightbox](https://lokeshdhakar.com/projects/lightbox2/): Used for viewing image.
 - [Fetch](https://github.com/github/fetch): Used for working with API.
+- [Axios](https://github.com/axios/axios): Used for working with API.
 - [Anime.js](https://animejs.com/) (optional): Animation ;)
 
 
@@ -122,8 +123,7 @@ DELETE /posts/:postId
 - Implement 3 pages with details described below.
 - Learn to use Github.
 - Deploy your page to Github Page.
-- Use `fetch` to work with API.
-- Use `qs` (query-string) package to parse `search` string to query params.
+- Use `axios` to work with API.
 - (Optional) Use anime.js to add animation.
 
 ## :house: Home page
