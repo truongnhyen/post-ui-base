@@ -1,5 +1,5 @@
 import postApi from './api/postApi.js';
-import AppConstants from './AppConstants.js';
+import AppConstants from './appConstants.js';
 import utils from './utils.js';
 
 const renderPostsList = (postsList) => {
