@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <!-- Lightbox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" />
+
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -78,14 +81,9 @@
               iusto dolorum rem, non error, saepe quia dignissimos quas ducimus aliquid. Praesentium ea aspernatur vero
               deserunt.
             </p>
-
-            <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos">
-
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
-              iusto dolorum rem, non error, saepe quia dignissimos quas ducimus aliquid. Praesentium ea aspernatur vero
-              deserunt.
-            </p>
+            <a href="https://picsum.photos/1368/800" data-lightbox="image-1" data-title="Image 1">
+              <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos">
+            </a>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
@@ -99,7 +97,14 @@
               deserunt.
             </p>
 
-            <img class="post-image" src="https://picsum.photos/1368/1000" alt="Picsum photos">
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
+              iusto dolorum rem, non error, saepe quia dignissimos quas ducimus aliquid. Praesentium ea aspernatur vero
+              deserunt.
+            </p>
+            <a href="https://picsum.photos/1368/1000" data-lightbox="image-2" data-title="Image 2">
+              <img class="post-image" src="https://picsum.photos/1368/1000" alt="Picsum photos">
+            </a>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur, dolor
@@ -113,11 +118,17 @@
   </main>
 
   <footer class="text-center text-muted py-3">
-    <small>Created by Po with <i class="fas fa-heart"></i></small>
+    <small>Created by Yen Truong with <i class="fas fa-heart"></i></small>
   </footer>
 
 
   <!-- Scripts should be placed here to prevent blocking render UI -->
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- LightBox + JQuery JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
   <script type="module" src="js/post-detail.mjs"></script>
 </body>
 
