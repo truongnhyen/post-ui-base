@@ -34,10 +34,8 @@ const renderPostsList = (postsList) => {
     // Set image
     const imagePost = newPostItem.querySelector('#postItemImage');
     if (imagePost) {
-      // imagePost.src = post.imageUrl || AppConstants.DEFAULT_IMAGE_URL;
-      // Use a smaller size image for thumb
       const thumbSrc = post.imageUrl.split('/').slice(0, -2);
-      thumbSrc.push('348', '200');
+      thumbSrc.push('348', '200'); //use smaller size for image 
 
       imagePost.src = `${thumbSrc.join('/') || AppConstants.DEFAULT_IMAGE_URL}`;
     }
@@ -81,16 +79,16 @@ const renderPostsList = (postsList) => {
         // Stop bubbling
         e.stopPropagation();
 
-        // Ask user whether they want to delete
-        const message = `Are you sure to remove student ${post.title}?`;
+        // Ask user whether they want to delete a post
+        const message = `Are you sure to remove post ${post.title}?`;
         if (window.confirm(message)) {
           try {
             await postApi.remove(post.id);
 
-            // remove li element
+            // remove post 
             newPostItem.remove();
           } catch (error) {
-            console.log('Failed to remove student:', error);
+            console.log('Failed to remove post:', error);
           }
         }
       });
@@ -172,7 +170,6 @@ const renderPostsPagination = (pagination) => {
 };
 
 // MAIN
-// IIFE -- iffy
 (async function () {
   try {
     let search = window.location.search;
@@ -189,22 +186,38 @@ const renderPostsPagination = (pagination) => {
     const response = await postApi.getAll(params);
     const postsList = response.data;
 
-    // hide loading
-    const spinnerElement = document.querySelector('#spinner');
-    if (spinnerElement) {
-      spinnerElement.classList.add('d-none');
-    }
     if (response) {
+      // hide loading
+      const spinnerElement = document.querySelector('#spinner');
+      if (spinnerElement) {
+        spinnerElement.classList.add('d-none');
+      }
+
       const pagination = response.pagination;
       renderPostsList(postsList);
       renderPostsPagination(pagination);
       anime({
         targets: '.posts-list li',
-        scale: [{ value: 1, easing: 'easeInOutQuad', duration: 1200 }],
-        delay: anime.stagger(200, { grid: [14, 5], from: 'center' }),
+        duration: 800,
+				elasticity: 600,
+				delay: function(t,i) {
+					return i*100;
+				},
+				opacity: {
+					value: [0,1],
+					duration: 600,
+					easing: 'linear'
+				},
+				scaleX: {
+					value: [0.4,1]
+				},
+				scaleY: {
+					value: [0.6,1],
+					duration: 1000
+				}
       });
     }
   } catch (error) {
-    console.log('Failed to fetch student list', error);
+    console.log('Failed to fetch post list', error);
   }
 })();

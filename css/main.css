@@ -19,10 +19,10 @@ body > main {
 
 /* Override link style */
 a {
-  color: rgba(255, 106, 1, 1);
+  color: #fd5184;
 }
 a:hover {
-  color: rgb(255, 106, 1, .75);
+  color: #fd5184;
 }
 
 

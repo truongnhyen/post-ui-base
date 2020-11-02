@@ -20,7 +20,7 @@ const renderPost = (post) => {
   const bannerPost = document.querySelector('#postHeroImage');
   console.log(post.imageUrl);
   if (bannerPost) {
-    bannerPost.style.backgroundImage = `url(${post.imageUrl})`;
+    bannerPost.style.backgroundImage = `url(${post.imageUrl || AppConstants.DEFAULT_HERO_IMAGE_URL})`;
   }
 
   // Set author
@@ -38,25 +38,23 @@ const renderPost = (post) => {
 };
 
 const main = async () => {
-  // 1. Get id from url params
+  //Get post id from url params
   const params = new URLSearchParams(window.location.search);
   const postId = params.get('id');
 
-  // 2. Get student list from storage
-  // const studentList = JSON.parse(localStorage.getItem("student_list")) || [];
+  if (postId) {
+    //Fetch post via id
+    const post = await postApi.get(postId);
 
-  // 3. Find student based on id
-  // const student = studentId ? studentList.find((x) => x.id === +studentId) : {};
-
-  const post = await postApi.get(postId);
-
-  // 4. Render
-  renderPost(post);
-
-  // 5. Bind edit link
-  const editLinkElement = document.querySelector('#editLink');
-  if (editLinkElement) {
-    editLinkElement.href = `/add-edit-student.html?id=${studentId}`;
+    // Render post detail
+    renderPost(post);
+  
+    // show edit link
+    const editLinkElement = document.querySelector('#goToEditPageLink');
+    if (editLinkElement) {
+      editLinkElement.href = `/add-edit-post.html?id=${postId}`;
+      editLinkElement.innerHTML = `<i class="fas fa-edit"></i> Edit post`;
+    }
   }
 };
 
