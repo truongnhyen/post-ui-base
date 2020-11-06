@@ -122,11 +122,6 @@
     <section class="posts-section">
       <div class="container">
         <h1 class="with-underline text-center">Latest posts</h1>
-        <div class="d-flex justify-content-center">
-          <div id="spinner" class="heartbeat-loader" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
         <!-- Posts list -->
         <ul id="postsList" class="row posts-list justify-content-center">
          
@@ -157,6 +152,9 @@
   <footer class="text-center text-muted py-3">
     <small>Created by Yen Truong with <i class="fas fa-heart"></i></small>
   </footer>
+  <div id="spinner" class="spinner">
+    <div class="heartbeat-loader"></div>
+  </div>
   <!-- Bootstrap -->
    <script
    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -173,13 +171,13 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"
   ></script>
-  <!-- Scripts should be placed here to prevent blocking render UI -->
-  <!-- axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.min.js"></script>
 
   <!-- AnimeJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+
+  <!-- Scripts should be placed here to prevent blocking render UI -->
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   
   <script type="module" src="js/main.mjs"></script>
 </body>

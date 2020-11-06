@@ -53,7 +53,7 @@ const renderPostsList = (postsList) => {
       timePost.textContent = ` - ${timeString}`;
     }
 
-    // Add click event for post item
+    // Add click event for post item link to post detail
     const postItem = newPostItem.querySelector('.post-item');
     if (postItem) {
       postItem.addEventListener('click', () => {
@@ -87,6 +87,9 @@ const renderPostsList = (postsList) => {
 
             // remove post 
             newPostItem.remove();
+            
+            //Refresh page to get new list
+            window.location = '';
           } catch (error) {
             console.log('Failed to remove post:', error);
           }
@@ -172,14 +175,12 @@ const renderPostsPagination = (pagination) => {
 // MAIN
 (async function () {
   try {
-    let search = window.location.search;
-    // Remove beginning question mark
-    search = search ? search.substring(1) : '';
-    console.log(window.Qs);
-    const { _page, _limit } = window.Qs.parse(search);
+    const urlParam = new URLSearchParams(window.location.search);
+    const page = urlParam.get('_page');
+    const limit = urlParam.get('_limit');
     const params = {
-      _page: _page || AppConstants.DEFAULT_PAGE,
-      _limit: _limit || AppConstants.DEFAULT_LIMIT,
+      _page: page || AppConstants.DEFAULT_PAGE,
+      _limit: limit || AppConstants.DEFAULT_LIMIT,
       _sort: 'updatedAt',
       _order: 'desc',
     };
