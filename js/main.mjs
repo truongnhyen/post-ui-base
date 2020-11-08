@@ -207,7 +207,7 @@ const renderPostsPagination = (pagination) => {
         duration: 800,
         elasticity: 600,
         delay: function (t, i) {
-          return i * 100;
+          return i * 200;
         },
         opacity: {
           value: [0, 1],
