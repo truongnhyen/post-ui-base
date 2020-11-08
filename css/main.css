@@ -19,18 +19,22 @@ body > main {
 
 /* Override link style */
 a {
-  color: #fd5184;
+  color: #f3bac3;
 }
 a:hover {
-  color: #fd5184;
+  color: #c47179;
 }
 
 
+h1 {
+  color: #c47179;
+}
 
 /* Add underline for all h1 */
 h1.with-underline {
   position: relative;
   margin-bottom: 3rem;
+  color: rgb(68, 68, 68);
 }
 
 h1.with-underline::after {
@@ -56,4 +60,9 @@ ul {
 
 ::placeholder {
   font-style: italic;
+}
+
+/* Footer */
+footer .fas.fa-heart {
+  color: #f3bac3;
 }

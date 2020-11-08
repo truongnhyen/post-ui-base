@@ -13,13 +13,25 @@ const renderPostsList = (postsList) => {
     // Clone post item
     const postItemFromTemplate = postTemplate.content.querySelector('li');
     const newPostItem = postItemFromTemplate.cloneNode(true);
-    console.log(newPostItem);
 
     // Fill data
     // Set Title
     const titlePost = newPostItem.querySelector('#postItemTitle');
     if (titlePost) {
       titlePost.textContent = utils.truncateTextlength(post.title, 30);
+    }
+
+    // Set author
+    const authorPost = newPostItem.querySelector('#postItemAuthor');
+    if (authorPost) {
+      authorPost.textContent = post.author;
+    }
+
+    // Set created time
+    const timePost = newPostItem.querySelector('#postItemTimeSpan');
+    if (timePost) {
+      const timeString = utils.formatDate(post.createdAt);
+      timePost.textContent = ` - ${timeString}`;
     }
 
     // Set Description
@@ -34,23 +46,11 @@ const renderPostsList = (postsList) => {
     // Set image
     const imagePost = newPostItem.querySelector('#postItemImage');
     if (imagePost) {
+      //use smaller size for image
       const thumbSrc = post.imageUrl.split('/').slice(0, -2);
-      thumbSrc.push('348', '200'); //use smaller size for image 
+      thumbSrc.push('348', '200');
 
       imagePost.src = `${thumbSrc.join('/') || AppConstants.DEFAULT_IMAGE_URL}`;
-    }
-
-    // Set author
-    const authorPost = newPostItem.querySelector('#postItemAuthor');
-    if (authorPost) {
-      authorPost.textContent = post.author;
-    }
-
-    // Set created time
-    const timePost = newPostItem.querySelector('#postItemTimeSpan');
-    if (timePost) {
-      const timeString = utils.formatDate(post.createdAt);
-      timePost.textContent = ` - ${timeString}`;
     }
 
     // Add click event for post item link to post detail
@@ -85,13 +85,13 @@ const renderPostsList = (postsList) => {
           try {
             await postApi.remove(post.id);
 
-            // remove post 
+            // remove post
             newPostItem.remove();
-            
-            //Refresh page to get new list
+
+            //Refresh page to fetch new list
             window.location = '';
           } catch (error) {
-            console.log('Failed to remove post:', error);
+            alert(`Failed to remove post: ${error}.\nPlease try again!`);
           }
         }
       });
@@ -185,7 +185,6 @@ const renderPostsPagination = (pagination) => {
       _order: 'desc',
     };
     const response = await postApi.getAll(params);
-    const postsList = response.data;
 
     if (response) {
       // hide loading
@@ -194,28 +193,34 @@ const renderPostsPagination = (pagination) => {
         spinnerElement.classList.add('d-none');
       }
 
-      const pagination = response.pagination;
+      //render post list
+      const postsList = response.data;
       renderPostsList(postsList);
+
+      //render pagination
+      const pagination = response.pagination;
       renderPostsPagination(pagination);
+
+      //animation post list
       anime({
         targets: '.posts-list li',
         duration: 800,
-				elasticity: 600,
-				delay: function(t,i) {
-					return i*100;
-				},
-				opacity: {
-					value: [0,1],
-					duration: 600,
-					easing: 'linear'
-				},
-				scaleX: {
-					value: [0.4,1]
-				},
-				scaleY: {
-					value: [0.6,1],
-					duration: 1000
-				}
+        elasticity: 600,
+        delay: function (t, i) {
+          return i * 100;
+        },
+        opacity: {
+          value: [0, 1],
+          duration: 600,
+          easing: 'linear',
+        },
+        scaleX: {
+          value: [0.4, 1],
+        },
+        scaleY: {
+          value: [0.6, 1],
+          duration: 1000,
+        },
       });
     }
   } catch (error) {

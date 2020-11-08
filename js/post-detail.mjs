@@ -1,43 +1,30 @@
 import postApi from './api/postApi.js';
+import AppConstants from './appConstants.js';
 import utils from './utils.js';
 
 const renderPost = (post) => {
-  const postDetail = document.querySelector('.post-detail');
+  // Set title tag
+  document.title = post.title;
 
   // Set Title
-  const titlePost = postDetail.querySelector('#postDetailTitle');
-  if (titlePost) {
-    titlePost.textContent = post.title;
-  }
-
-  // Set Description
-  const descriptionPost = postDetail.querySelector('#postDetailDescription');
-  if (descriptionPost) {
-    descriptionPost.textContent = post.description;
-  }
-
-  // Set image
-  const bannerPost = document.querySelector('#postHeroImage');
-  console.log(post.imageUrl);
-  if (bannerPost) {
-    bannerPost.style.backgroundImage = `url(${post.imageUrl || AppConstants.DEFAULT_HERO_IMAGE_URL})`;
-  }
+  utils.setTextByElementId('postDetailTitle', post.title);
 
   // Set author
-  const authorPost = postDetail.querySelector('#postDetailAuthor');
-  if (authorPost) {
-    authorPost.textContent = post.author;
-  }
+  utils.setTextByElementId('postDetailAuthor', post.author);
 
   // Set created time
-  const timePost = postDetail.querySelector('#postDetailTimeSpan');
-  if (timePost) {
-    const timeString = utils.formatDate(post.createdAt);
-    timePost.textContent = ` - ${timeString}`;
-  }
+  const timeString = utils.formatDate(post.createdAt);
+  utils.setTextByElementId('postDetailTimeSpan', ` - ${timeString}`);
+
+  // Set Description
+  utils.setTextByElementId('postDetailDescription', post.description);
+
+  // Set image
+  utils.setBackgroundImageByElementId('postHeroImage', post.imageUrl);
 };
 
-const main = async () => {
+// MAIN
+(async function () {
   //Get post id from url params
   const params = new URLSearchParams(window.location.search);
   const postId = params.get('id');
@@ -48,7 +35,7 @@ const main = async () => {
 
     // Render post detail
     renderPost(post);
-  
+
     // show edit link
     const editLinkElement = document.querySelector('#goToEditPageLink');
     if (editLinkElement) {
@@ -56,6 +43,4 @@ const main = async () => {
       editLinkElement.innerHTML = `<i class="fas fa-edit"></i> Edit post`;
     }
   }
-};
-
-main();
+})();
