@@ -242,3 +242,10 @@
 .posts-nav .page-item:not(.active) .page-link:hover {
   color: #17a2b8;
 }
+
+.carousel-caption, .posts-section .post-item .card-title {
+  font-family: 'Noto Serif', serif;
+}
+.carousel-caption h5 {
+  font-size: 1.6rem;
+}
